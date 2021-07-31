@@ -1,19 +1,50 @@
-import * as core from '@actions/core'
-import {wait} from './wait'
+import * as core from '@actions/core';
+import { Slack, Status } from './slack';
 
-async function run(): Promise<void> {
+async function run() {
   try {
-    const ms: string = core.getInput('milliseconds')
-    core.debug(`Waiting ${ms} milliseconds ...`) // debug is only output if you set the secret `ACTIONS_RUNNER_DEBUG` to true
+    const botName = core.getInput('bot_name');
+    const channel = core.getInput('channel');
+    const status = core.getInput('status', { required: true }).toLowerCase() as Status;
+    const gitHubBaseUrl = core.getInput('github_base_url');
+    const hash = core.getInput('hash');
+    const fields = core.getInput('fields');
 
-    core.debug(new Date().toTimeString())
-    await wait(parseInt(ms, 10))
-    core.debug(new Date().toTimeString())
+    core.debug(`bot_name: ${botName}`);
+    core.debug(`channel: ${channel}`);
+    core.debug(`status: ${status}`);
+    core.debug(`github_base_url: ${gitHubBaseUrl}`);
 
-    core.setOutput('time', new Date().toTimeString())
+    const slack = new Slack({ botName, channel, gitHubBaseUrl, hash, fields });
+    const text = slackText(status);
+
+    await slack.sendMessage(status, text);
   } catch (error) {
-    core.setFailed(error.message)
+    if (error instanceof Error) {
+      core.setFailed(error.message);
+    }
   }
 }
 
-run()
+const slackText = (status: Status) => {
+  const successText = core.getInput('success_text');
+  const failureText = core.getInput('failure_text');
+  const canceledText = core.getInput('canceled_text');
+
+  core.debug(`success_text: ${successText}`);
+  core.debug(`failure_text: ${failureText}`);
+  core.debug(`canceled_text: ${canceledText}`);
+
+  switch (status) {
+    case Status.SUCCEEDED:
+      return successText;
+    case Status.FAILED:
+      return failureText;
+    case Status.CANCELED:
+      return canceledText;
+    default:
+      throw new Error('You can specify success or failure or canceled');
+  }
+};
+
+run();

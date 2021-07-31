@@ -1,11 +1,42 @@
-name: 'Your name here'
-description: 'Provide a description here'
-author: 'Your name or organization here'
+name: action-slack-notification
+description: This action will send a notification to Slack
+author: chussum
 inputs:
-  milliseconds: # change this
+  status:
+    description: "Specify success or failure or cancelled or ${{ job.status }}"
+    default: "${{ job.status }}"
     required: true
-    description: 'input description here'
-    default: 'default value if applicable'
+  fields:
+    description: |
+      You can choose the items you want to add to the fields at the time of notification.
+      If you have more than one, please enter it in csv format.
+      e.g. commit,repo
+    default: ""
+    required: false
+  bot_name:
+    description: Override the slack integration's default name.
+    default: ""
+  channel:
+    description: Override the slack integration's default channel.
+    default: ""
+  github_base_url:
+    description: Specify if you want to use GitHub Enterprise.
+    default: "https://github.com"
+  hsah:
+    description: Github Hash(SHA)
+    default: ""
+  success_text:
+    description: Slack message when succeeded.
+    default: "🚀 Succeeded"
+  failure_text:
+    description: Slack message when failed.
+    default: "👀 Failed"
+  canceled_text:
+    description: Slack message when cancelled.
+    default: "🙅🏻‍♂️ Canceled"
 runs:
-  using: 'node12'
-  main: 'dist/index.js'
+  using: 'node14'
+  main: lib/main.js
+branding:
+  icon: message-circle
+  color: black
