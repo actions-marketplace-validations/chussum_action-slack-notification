@@ -24,7 +24,7 @@ jobs:
     steps:
       - name: Slack Notification
         if: always() # Pick up events even if the job fails or is canceled.
-        uses: chussum/action-slack@v1
+        uses: chussum/action-slack-notification@v1
         with:
           status: ${{ jobs.status }}
           fields: repo,commit # selectable (default: repo,commit,action)
