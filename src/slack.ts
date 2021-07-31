@@ -59,7 +59,6 @@ export class Slack {
       attachments: [
         {
           color: color,
-          // fields: await this.fields2(),
           fields: await this.fields.attachments(),
         },
       ],

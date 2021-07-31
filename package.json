@@ -1,5 +1,5 @@
 {
-  "name": "action-slack",
+  "name": "action-slack-notification",
   "version": "1.0.0",
   "private": true,
   "description": "TypeScript template action",
@@ -7,13 +7,13 @@
   "scripts": {
     "build": "tsc",
     "lint": "eslint src/**/*.ts",
-    "package": "ncc build --source-map --license licenses.txt",
+    "pack": "ncc build -m",
     "test": "jest",
-    "all": "npm run build && npm run package && npm test"
+    "all": "npm run build && npm run pack"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/chussum/action-slack.git"
+    "url": "git+https://github.com/chussum/action-slack-notification.git"
   },
   "keywords": [
     "actions",

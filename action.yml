@@ -3,7 +3,7 @@ description: This action will send a notification to Slack
 author: chussum
 inputs:
   status:
-    description: "Specify success or failure or cancelled or ${{ job.status }}"
+    description: "Specify success or failure or cancelled or job.status"
     default: "${{ job.status }}"
     required: true
   fields:
@@ -14,15 +14,15 @@ inputs:
     default: ""
     required: false
   bot_name:
-    description: Override the slack integration's default name.
+    description: Override the legacy integration's default name.
     default: ""
   channel:
-    description: Override the slack integration's default channel.
+    description: Override the legacy integration's default channel.
     default: ""
   github_base_url:
     description: Specify if you want to use GitHub Enterprise.
     default: "https://github.com"
-  hsah:
+  hash:
     description: Github Hash(SHA)
     default: ""
   success_text:
@@ -35,8 +35,8 @@ inputs:
     description: Slack message when cancelled.
     default: "🙅🏻‍♂️ Canceled"
 runs:
-  using: 'node14'
-  main: lib/main.js
+  using: 'node12'
+  main: dist/index.js
 branding:
   icon: message-circle
   color: black

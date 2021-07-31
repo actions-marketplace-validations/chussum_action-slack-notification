@@ -28,12 +28,12 @@ jobs:
         with:
           status: ${{ job.status }}
           fields: repo,commit # selectable (default: repo,commit,action)
-          hsah: a0d21a060c204103c02cc7f8b4b39ffbb2c2fc13 # optional, Github commit sha (will be display in fields (default. github ref))
-          channel: general # optional, Override the slack integration's default channel.
-          bot_name: Hello World Bot # optional, Override the slack integration's default name.
+          hsah: 2e133437d3f8518b16b5f92d7906fe1e5b4d6b88 # optional, Github commit sha (will be display in fields (default. github ref))
           success_text: Succeeded # optional, Slack message when succeeded.
           failure_text: Failed # optional, Slack message when succeeded.
           canceled_text: Canceled # optional, Slack message when succeeded.
+          bot_name: Hello World Bot # legacy optional, Override the legacy integration's default name.
+          channel: general # legacy optional, Override the legacy integration's default channel.
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # required
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }} # required
