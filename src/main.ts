@@ -27,9 +27,9 @@ async function run() {
 }
 
 const slackText = (status: Status) => {
-  const successText = core.getInput('success_text');
-  const failureText = core.getInput('failure_text');
-  const canceledText = core.getInput('canceled_text');
+  const successText = core.getMultilineInput('success_text').join('\n');
+  const failureText = core.getMultilineInput('failure_text').join('\n');
+  const canceledText = core.getMultilineInput('canceled_text').join('\n');
 
   core.debug(`success_text: ${successText}`);
   core.debug(`failure_text: ${failureText}`);
