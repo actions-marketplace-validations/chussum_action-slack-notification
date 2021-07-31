@@ -5,7 +5,8 @@ A [GitHub Action](https://github.com/features/actions) to send a message to a Sl
 
 **Screenshot**
 
-TODO
+<img width="418" alt="capture" src="https://user-images.githubusercontent.com/18302025/127743477-4c8060aa-d86d-4944-8913-2ed80c04bf83.png">
+
 
 ## Usage
 
