@@ -40,7 +40,7 @@ export class Field {
       [
         this.includes('repo') ? createAttachment('Repository', await this.repo()) : undefined,
         this.includes('commit') ? createAttachment('Commit', await this.commit()) : undefined,
-        this.includes('action') ? createAttachment('GitHub Actions', await this.actions()) : undefined,
+        this.includes('action') ? createAttachment('GitHub Actions', await this.action()) : undefined,
       ],
       undefined,
     );
@@ -56,17 +56,28 @@ export class Field {
   private async commit(): Promise<string> {
     const { sha } = context;
     const { owner, repo } = context.repo;
-    const hash = this.hash || sha;
+    const ref = this.hash || sha;
+    const props = await this.octokit.rest.repos.getCommit({
+      owner,
+      repo,
+      ref,
+    });
 
-    const value = `<${this.gitHubBaseUrl}/${owner}/${repo}/commit/${hash}|${hash.slice(0, 8)}>`;
+    const value = `<${this.gitHubBaseUrl}/${owner}/${repo}/commit/${props.data.sha}|${props.data.sha.slice(0, 8)}>`;
     return value;
   }
 
-  private async actions() {
+  private async action() {
     const { owner, repo } = context.repo;
     const { sha } = context;
+    const ref = this.hash || sha;
+    const props = await this.octokit.rest.repos.getCommit({
+      owner,
+      repo,
+      ref,
+    });
 
-    return `<https://github.com/${owner}/${repo}/commit/${sha}/checks|${context.workflow}>`;
+    return `<https://github.com/${owner}/${repo}/commit/${props.data.sha}/checks|${context.workflow}>`;
   }
 }
 

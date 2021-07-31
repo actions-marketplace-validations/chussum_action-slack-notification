@@ -26,7 +26,7 @@ jobs:
         if: always() # Pick up events even if the job fails or is canceled.
         uses: chussum/action-slack-notification@v1
         with:
-          status: ${{ jobs.status }}
+          status: ${{ job.status }}
           fields: repo,commit # selectable (default: repo,commit,action)
           hsah: a0d21a060c204103c02cc7f8b4b39ffbb2c2fc13 # optional, Github commit sha (will be display in fields (default. github ref))
           channel: general # optional, Override the slack integration's default channel.
