@@ -69,15 +69,9 @@ export class Field {
 
   private async action() {
     const { owner, repo } = context.repo;
-    const { sha } = context;
-    const ref = this.hash || sha;
-    const props = await this.octokit.rest.repos.getCommit({
-      owner,
-      repo,
-      ref,
-    });
+    const { runId } = context;
 
-    return `<https://github.com/${owner}/${repo}/commit/${props.data.sha}/checks|${context.workflow}>`;
+    return `<https://github.com/${owner}/${repo}/actions/runs/${runId}|${context.workflow}>`;
   }
 }
 
