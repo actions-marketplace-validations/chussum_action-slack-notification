@@ -28,7 +28,7 @@ jobs:
         with:
           status: ${{ job.status }}
           fields: repo,commit # selectable (default: repo,commit,action)
-          hsah: 2e133437d3f8518b16b5f92d7906fe1e5b4d6b88 # optional, Github commit sha (will be display in fields (default. github ref))
+          hash: 2e133437d3f8518b16b5f92d7906fe1e5b4d6b88 # optional, Github commit sha (will be display in fields (default. github ref))
           success_text: Succeeded # optional, Slack message when succeeded.
           failure_text: Failed # optional, Slack message when succeeded.
           canceled_text: Canceled # optional, Slack message when succeeded.
@@ -39,7 +39,7 @@ jobs:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }} # required
 ```
 
-3. Create `SLACK_WEBHOOK` secret using [GitHub Action's Secret](https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets#creating-encrypted-secrets-for-a-repository). You can [generate a Slack incoming webhook token from here](https://slack.com/apps/A0F7XDUAZ-incoming-webhooks).
+3. Create `SLACK_WEBHOOK_URL` secret using [GitHub Action's Secret](https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets#creating-encrypted-secrets-for-a-repository). You can [generate a Slack incoming webhook token from here](https://slack.com/apps/A0F7XDUAZ-incoming-webhooks).
 
 
 ## License

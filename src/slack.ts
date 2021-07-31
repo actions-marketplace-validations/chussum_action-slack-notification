@@ -55,7 +55,7 @@ export class Slack {
     const payload = {
       username: this.botName || undefined,
       channel: this.channel || undefined,
-      text: text,
+      text,
       attachments: [
         {
           color: color,
