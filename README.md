@@ -1,4 +1,4 @@
-# Action Slack - GitHub Action
+# Action Slack Notification
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 
 A [GitHub Action](https://github.com/features/actions) to send a message to a Slack channel.
