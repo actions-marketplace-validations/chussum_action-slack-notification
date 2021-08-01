@@ -1,9 +1,11 @@
 {
   "name": "action-slack-notification",
   "version": "1.0.0",
-  "private": true,
-  "description": "TypeScript template action",
+  "description": "🚀 A GitHub Action to send a message to a Slack channel.",
   "main": "lib/main.js",
+  "contributors": [
+    "chussum <flosdor@gmail.com>"
+  ],
   "scripts": {
     "build": "tsc",
     "lint": "eslint src/**/*.ts",
@@ -18,10 +20,12 @@
   "keywords": [
     "actions",
     "slack",
+    "chat",
+    "notify",
     "github",
     "notification"
   ],
-  "author": "",
+  "author": "chussum",
   "license": "MIT",
   "dependencies": {
     "@actions/core": "^1.4.0",
